@@ -1,8 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require("dotenv").config();
+const User = require("./models/User");
+const testRoute = require("./routes/testRoute");
+const userRoute = require("./routes/userRoute");
 
 const app = express();
+app.use(express.json());
+
+app.use("/", testRoute);
+app.use("/user", userRoute);
 
 mongoose.connect(process.env.DB_URI)
 .then(() => {
@@ -15,4 +22,3 @@ mongoose.connect(process.env.DB_URI)
     console.error('Error connecting to database:');
     console.error(err.message);
 })
-
