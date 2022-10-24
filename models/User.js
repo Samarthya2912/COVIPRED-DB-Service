@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     infection_probability: { type: Number, default: -1 },
     infection_prediction: { type: Boolean, default: false },
     slot_assigned: { type: Boolean, default: false },
-    slot_id: { type: mongoose.Schema.Types.ObjectId, ref: 'slot', default: null }
+    slot_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Batch', default: null }
 })
 
 const User = mongoose.model('User', userSchema);
