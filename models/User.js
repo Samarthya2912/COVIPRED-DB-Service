@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
         gender: { type: Boolean, default: false },
         test_indication: { type: Boolean, default: false },
     },
-    risk: { type: Number, default: -1 },
+    infection_probability: { type: Number, default: -1 },
+    infection_prediction: { type: Boolean, default: false },
     slot_assigned: { type: Boolean, default: false },
     slot_id: { type: mongoose.Schema.Types.ObjectId, ref: 'slot', default: null }
 })

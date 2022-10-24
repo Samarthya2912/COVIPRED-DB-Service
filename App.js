@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const errorHandler = require('./controllers/errorHandler');
 require("dotenv").config();
 const User = require("./models/User");
 const testRoute = require("./routes/testRoute");
@@ -10,6 +11,8 @@ app.use(express.json());
 
 app.use("/", testRoute);
 app.use("/user", userRoute);
+
+app.use(errorHandler);
 
 mongoose.connect(process.env.DB_URI)
 .then(() => {

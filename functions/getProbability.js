@@ -1,5 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
+const HttpError = require("../models/HttpError");
 
 /* 
     features: {
@@ -13,17 +14,19 @@ const axios = require("axios");
         test_indication: 1
     }
 
-    returns Number [0,1]
+    returns Object {
+        'probability': Number,
+        'infected': {0,1}
+    }
 */
-
-const getProbability = async (features) => {
+const getPredictions = async (features) => {
     try {
         const response = await axios.post(process.env.PREDICTOR_SERVICE_URI, features);
-        // console.log(response.data);
-        return response.data.prediction;
+        return response.data;
     } catch(err) {
-        console.error(err.message);
+        // console.error(err.message);
+        throw new HttpError("Error getting predictions while creating user: "+err.message, 503);
     }
 }
 
-module.exports = getProbability;
+module.exports = getPredictions;
