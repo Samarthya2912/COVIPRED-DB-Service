@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 
 const batchSchema = new mongoose.Schema({
     capacity: { type: Number, required: true },
-    full: { type: Boolean, default: false },
     size: { type: Number, default: 0 },
-    users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+    full: { type: Boolean, default: false },
+    enrolledUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    beginsAt: { type: Date, required: true },
+    endsAt: { type: Date, required: true }
 });
 
 const Batch = mongoose.model('Batch', batchSchema);

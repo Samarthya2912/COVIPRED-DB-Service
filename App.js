@@ -5,6 +5,7 @@ require("dotenv").config();
 const User = require("./models/User");
 const testRoute = require("./routes/testRoute");
 const userRoute = require("./routes/userRoute");
+const batchRoute = require("./routes/batchRoute");
 const log = require("log-beautify");
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/", testRoute);
 app.use("/user", userRoute);
+app.use("/batch", batchRoute);
 
 app.use(errorHandler);
 
